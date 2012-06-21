@@ -1,7 +1,7 @@
 import tweepy
 import os
 import gtk
-
+import sys
 class tweetBox:
     def __init__(self, api):
         self.api = api
@@ -107,10 +107,18 @@ def tweet():
     CONSUMER_SECRET = "" # your consumer secret here
     ACCESS_KEY = "" # your access key here
     ACCESS_SECRET = "" # your access token here
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-    auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-    api=tweepy.API(auth)
-    tweetBox(api)
-    gtk.main()
+    if CONSUMER_KEY and CONSUMER_SECRET and ACCESS_KEY and ACCESS_SECRET:
+        auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+        auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+        try:
+            api=tweepy.API(auth)
+        except tweepy.error.TweepError:
+            print "Please check consumer key/consumer secret/access key/access secret"
+            sys.exit()
+        tweetBox(api)
+        gtk.main()
+    else:
+        print "Please add consumer key/consumer secret/access key/access secret"
+        sys.exit()
         
     
