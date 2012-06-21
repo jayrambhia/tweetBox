@@ -113,12 +113,12 @@ def tweet():
         try:
             api=tweepy.API(auth)
         except tweepy.error.TweepError:
-            print "Please check consumer key/consumer secret/access key/access secret"
+            print "Please check consumer key/consumer secret/access key/access secret and re-install"
             sys.exit()
         tweetBox(api)
         gtk.main()
     else:
-        print "Please add consumer key/consumer secret/access key/access secret"
+        print "Please add consumer key/consumer secret/access key/access secret and re-install"
         sys.exit()
         
     
