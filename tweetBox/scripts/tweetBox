@@ -1,0 +1,2 @@
+from tweetBox import *
+tweet()
